@@ -41,8 +41,8 @@ namespace cse210_batter_csharp.Scripting
                 {
                     if(_physicsService.IsCollision(ball, brick))
                     {
-                        Ball b = (Ball)ball;
-                        b.BounceVertical();
+                        Ball _ball = (Ball)ball;
+                        _ball.BounceVertical();
                         _audioService.PlaySound(Constants.SOUND_BOUNCE);
                         toRemove.Add(brick);
                         
@@ -56,7 +56,6 @@ namespace cse210_batter_csharp.Scripting
                 }
 
                 toRemove.Clear();
-                //}
             }
         }
     }
