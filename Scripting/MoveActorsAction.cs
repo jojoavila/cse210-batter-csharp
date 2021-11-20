@@ -11,11 +11,6 @@ namespace cse210_batter_csharp.Scripting
     /// </summary>
     public class MoveActorsAction : Action
     {
-
-        // public MoveActorsAction()
-        // {
-        // }
-
         public override void Execute(Dictionary<string, List<Actor>> cast)
         {
             foreach (List<Actor> group in cast.Values)
@@ -38,16 +33,6 @@ namespace cse210_batter_csharp.Scripting
             int newX = (x + dx);
             int newY = (y + dy);
 
-            // if (newX < 0)
-            // {
-            //     newX = Constants.MAX_X;
-            // }
-
-            // if (newY < 0)
-            // {
-            //     newY = Constants.MAX_Y;
-            // }
-            //Console.WriteLine(newX);
             actor.SetPosition(new Point(newX, newY));
         }
 

@@ -3,6 +3,9 @@ namespace cse210_batter_csharp.Casting
 {
     public class Ball : Actor
     {
+        /// <summary>
+        /// Set the ball.
+        /// </summary>
         public Ball()
         {
             SetWidth(Constants.BALL_WIDTH);
@@ -16,7 +19,6 @@ namespace cse210_batter_csharp.Casting
             SetPosition(_position);
 
             SetVelocity(new Point(5,-5));
-
         }
 
         public void BounceVertical()

@@ -2,16 +2,20 @@ using System;
 using System.Collections.Generic;
 using cse210_batter_csharp.Casting;
 using cse210_batter_csharp.Services;
+using System.Threading;
 
 
 namespace cse210_batter_csharp.Scripting
 {
+    /// <summary>
+    /// An action, so the ball bounces off the walls and ceiling.
+    /// It also erases balls that go under the bottom of the window.
+    /// </summary>
     public class HandleOffScreenAction : Action
     {
         PhysicsService _physicsService = new PhysicsService();
-        AudioService audioService = new AudioService();
-        OutputService outputService = new OutputService();
-        
+        AudioService _audioService = new AudioService();
+                
         public HandleOffScreenAction(PhysicsService physicsService)
         {
             _physicsService = physicsService;
@@ -32,20 +36,19 @@ namespace cse210_batter_csharp.Scripting
                 if (x <= 0 || x >= 780)
                 {
                     ball.BounceHorizontal();
-                    audioService.PlaySound(Constants.SOUND_BOUNCE);
+                    _audioService.PlaySound(Constants.SOUND_BOUNCE);
                 }
                 if (y <= 0)
                 {
                     ball.BounceVertical();
-                    audioService.PlaySound(Constants.SOUND_BOUNCE);
+                    _audioService.PlaySound(Constants.SOUND_BOUNCE);
                 }
                 foreach (Actor remobableBall in ballList)
                 {
+                                        
                     if (y > 650)
                     {
-                        Ball b = (Ball)ball;
-                        b.BounceVertical();
-                        audioService.PlaySound(Constants.SOUND_OVER);
+                        _audioService.PlaySound(Constants.SOUND_OVER);
                         ballToRemove.Add(remobableBall);
                     }
                 }
@@ -54,15 +57,6 @@ namespace cse210_batter_csharp.Scripting
             foreach (Ball ball in ballToRemove)
             {
                 ballList.Remove(ball);
-                //finishGame();   
-            }
-
-            ballToRemove.Clear();
-            
-            
-            void finishGame()
-            {
-                Environment.Exit(0);
             }
         }
     }

@@ -35,7 +35,7 @@ namespace cse210_batter_csharp
                 CueAction("input");
                 CueAction("update");
                 CueAction("output");
-
+                
                 if (Raylib_cs.Raylib.WindowShouldClose())
                 {
                     _keepPlaying = false;
@@ -58,6 +58,5 @@ namespace cse210_batter_csharp
                 action.Execute(_cast);
             }
         }
-
     }
 }

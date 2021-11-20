@@ -5,6 +5,9 @@ using cse210_batter_csharp.Services;
 
 namespace cse210_batter_csharp.Scripting
 {
+    /// <summary>
+    /// An action to manage the collision between the ball and the bricks or paddle.
+    /// </summary>
     public class HandleCollisionsAction : Action
     
     {
@@ -46,10 +49,7 @@ namespace cse210_batter_csharp.Scripting
                     }
                     
                 }
-                // BrickCleanUp();
-
-                // void BrickCleanUp()
-                // {
+                
                 foreach (Brick brick in toRemove)
                 {
                     bricksList.Remove(brick);   

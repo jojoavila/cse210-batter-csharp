@@ -3,6 +3,9 @@ namespace cse210_batter_csharp.Casting
 {
     public class Paddle : Actor
     {
+        /// <summary>
+        /// Set the paddle.
+        /// </summary>
         public Paddle()
         {
             SetWidth(Constants.PADDLE_WIDTH);

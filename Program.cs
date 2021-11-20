@@ -16,29 +16,28 @@ namespace cse210_batter_csharp
             // Bricks
             cast["bricks"] = new List<Actor>();
 
-            // TODO: Add your bricks here
-           
-                for (int i = 25; i < 750; i+=70)
+            // Adding the bricks here
+            for (int i = 25; i < 750; i+=70)
+            {
+                for (int e = 10; e < 230; e+=40)
                 {
-                    for (int e = 10; e < 230; e+=40)
-                    {
-                        Brick brick = new Brick();
-                        brick.SetPosition(new Point(i,e));
-                        cast["bricks"].Add(brick);
-                    }
+                    Brick brick = new Brick();
+                    brick.SetPosition(new Point(i,e));
+                    cast["bricks"].Add(brick);
                 }
+            }
                            
             // The Ball (or balls if desired)
             cast["balls"] = new List<Actor>();
 
-            // TODO: Add your ball here
+            // Adding the ball here
             Ball ball = new Ball();
             cast["balls"].Add(ball);
 
             // The paddle
             cast["paddle"] = new List<Actor>();
 
-            // TODO: Add your paddle here
+            // Adding the paddle here
             Paddle paddle = new Paddle();
             cast["paddle"].Add(paddle);
 
@@ -57,16 +56,19 @@ namespace cse210_batter_csharp
             DrawActorsAction drawActorsAction = new DrawActorsAction(outputService);
             script["output"].Add(drawActorsAction);
 
-            // TODO: Add additional actions here to handle the input, move the actors, handle collisions, etc.
+            // Movement of the ball
             MoveActorsAction moveActorsAction = new MoveActorsAction();
             script["update"].Add(moveActorsAction);
 
+            // Bouncing with the ceiling and walls
             HandleOffScreenAction handleOffScreenAction = new HandleOffScreenAction(physicsService);
             script["update"].Add(handleOffScreenAction);
 
+            // Colliding with the bricks
             HandleCollisionsAction handleCollisionsAction = new HandleCollisionsAction(physicsService);
             script["update"].Add(handleCollisionsAction);
 
+            // Controling the paddle
             ControlActorsAction controlActorsAction = new ControlActorsAction(inputService);
             script["input"].Add(controlActorsAction);
 
@@ -77,10 +79,9 @@ namespace cse210_batter_csharp
 
             Director theDirector = new Director(cast, script);
             theDirector.Direct();
-
-            audioService.StopAudio();
-
             
+
+            audioService.StopAudio();            
 
         }
     }
